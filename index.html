@@ -1,14 +1,68 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <title>Hacheuve Studio</title>
-  <link rel="stylesheet" href="style.css">
-</head>
-<body>
-  <header>
-    <h1>Hacheuve Studio</h1>
-    <p>Fotografía · Vídeo · Diseño</p>
-  </header>
-</body>
-</html>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hache Uve | Portfolio Creativo</title>
+    <style>
+        /* ===== VARIABLES Y RESETS ===== */
+        :root {
+            --bg-color: #0f0f0f;
+            --text-color: #f5f5f5;
+            --accent-color: #ff3366;
+            --gray: #888888;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Helvetica Neue', Arial, sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+
+        a {
+            text-decoration: none;
+            color: var(--text-color);
+            transition: color 0.3s ease;
+        }
+
+        a:hover {
+            color: var(--accent-color);
+        }
+
+        /* ===== NAVEGACIÓN ===== */
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 2rem 5%;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            background: rgba(15, 15, 15, 0.9);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        .logo span {
+            color: var(--accent-color);
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 2rem;
+        }
