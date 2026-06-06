@@ -7,279 +7,18 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700;900&display=swap" rel="stylesheet">
-    <style>
-        /* === Estilos Globales === */
-        :root {
-            --primary-orange: #ff9c2a; 
-            --dark-gray: #1a1a1a; /* Un gris más oscuro para el scroll */
-            --white: #ffffff;
-            --font-family: 'Montserrat', sans-serif;
-        }
-
-        body {
-            margin: 0;
-            padding: 0;
-            font-family: var(--font-family);
-            background-color: var(--primary-orange);
-            color: var(--white);
-            overflow-x: hidden;
-        }
-
-        a {
-            text-decoration: none;
-            color: var(--white);
-            transition: color 0.3s ease;
-        }
-
-        a:hover {
-            color: #ddd;
-        }
-
-        /* === Barra Superior Dinámica === */
-        header {
-            background-color: transparent; /* Transparente por defecto */
-            padding: 20px 0;
-            position: fixed;
-            width: 100%;
-            top: 0;
-            z-index: 1000;
-            transition: background-color 0.4s ease, padding 0.4s ease, box-shadow 0.4s ease;
-        }
-
-        /* Clase que se añade con JavaScript al hacer scroll */
-        header.header-scrolled {
-            background-color: rgba(26, 26, 26, 0.95); /* Fondo oscuro con ligera transparencia */
-            padding: 12px 0; /* Se hace un poco más fino al bajar */
-            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
-        }
-
-        .header-content {
-            max-width: 1200px;
-            margin: 0 auto;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 0 30px;
-        }
-
-        .logo {
-            display: flex;
-            align-items: center;
-        }
-
-        /* Estilo para la imagen del logo en la barra superior */
-        .logo-img {
-            height: 40px; /* Ajusta esta altura al tamaño de tu logo */
-            width: auto;
-            object-fit: contain;
-        }
-
-        nav ul {
-            margin: 0;
-            padding: 0;
-            list-style: none;
-            display: flex;
-            align-items: center;
-            gap: 20px;
-        }
-
-        nav ul li {
-            font-weight: 500;
-        }
-
-        .contact-btn {
-            background-color: transparent;
-            color: var(--white);
-            padding: 8px 16px;
-            border-radius: 5px;
-            border: 2px solid var(--white);
-            font-weight: 700;
-            transition: all 0.3s ease;
-        }
-
-        .contact-btn:hover {
-            background-color: var(--white);
-            color: var(--primary-orange);
-        }
-
-        header.header-scrolled .contact-btn:hover {
-            color: var(--dark-gray);
-        }
-
-        /* === Sección Principal (Hero) === */
-        .hero {
-            height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-
-        .hero-content {
-            text-align: center;
-        }
-
-        .hero h1 {
-            font-weight: 900;
-            font-size: 5rem;
-            line-height: 1.1;
-            text-transform: uppercase;
-            margin-bottom: 40px;
-            color: var(--white); 
-        }
-
-        .hero-image-wrapper {
-            margin-bottom: 50px;
-            display: flex;
-            justify-content: center;
-        }
-
-        /* Estilo para la imagen central que sustituye al diseño CSS */
-        .hero-main-img {
-            width: 100%;
-            max-width: 500px; /* Ajusta el ancho máximo de tu imagen */
-            height: auto;
-            object-fit: contain;
-        }
-
-        .hero-btns {
-            display: flex;
-            justify-content: center;
-            gap: 30px;
-        }
-
-        .btn-outline {
-            display: inline-block;
-            font-weight: 500;
-            font-size: 1.1rem;
-            text-transform: uppercase;
-            border: 3px solid var(--white);
-            color: var(--white);
-            padding: 12px 30px;
-            border-radius: 30px;
-            transition: all 0.3s ease;
-        }
-
-        .btn-outline:hover {
-            background-color: var(--white);
-            color: var(--primary-orange);
-        }
-
-        /* === Secciones Generales === */
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 100px 30px;
-        }
-
-        h2 {
-            font-size: 3.5rem;
-            font-weight: 900;
-            text-transform: uppercase;
-            margin-bottom: 60px;
-            text-align: center;
-            color: var(--white);
-        }
-
-        /* === Rejilla de Proyectos === */
-        .projects-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 40px;
-        }
-
-        .project-item {
-            background-color: var(--white);
-            border-radius: 10px;
-            overflow: hidden;
-            aspect-ratio: 16/9;
-            display: flex;
-            flex-direction: column;
-            color: var(--dark-gray);
-            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-            transition: transform 0.3s ease;
-        }
-
-        .project-item:hover {
-            transform: translateY(-5px);
-        }
-
-        .img-placeholder {
-            position: relative;
-            width: 100%;
-            height: 100%;
-            overflow: hidden;
-            background-color: #eee;
-        }
-
-        .img-placeholder img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            display: block;
-        }
-
-        /* === Sección de Servicios === */
-        .services-intro {
-            font-size: 1.2rem;
-            line-height: 1.7;
-            text-align: center;
-            max-width: 850px;
-            margin: 0 auto;
-            color: var(--white);
-        }
-
-        /* === Pie de Página (Footer) === */
-        footer {
-            background-color: var(--dark-gray);
-            color: var(--white);
-            padding: 40px 0;
-            text-align: center;
-            font-size: 0.95rem;
-        }
-
-        /* === Ajustes Receptivos (Móviles) === */
-        @media (max-width: 768px) {
-            header { padding: 15px 0; background-color: rgba(26, 26, 26, 0.95); } /* En móviles siempre oscuro por legibilidad */
-            .header-content { flex-direction: column; gap: 15px; padding: 0 15px;}
-            nav ul { flex-direction: column; gap: 15px; text-align: center; font-size: 0.9rem;}
-            
-            .hero h1 { font-size: 3.2rem; margin-bottom: 30px;}
-            .hero-main-img { max-width: 300px; }
-            h2 { font-size: 2.5rem; margin-bottom: 40px;}
-            .container { padding: 70px 15px;}
-            .projects-grid { gap: 20px;}
-            .hero-btns { flex-direction: column; gap: 15px; }
-        }
-    </style>
+    
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-    <!-- Barra Superior -->
-    <header id="main-header">
-        <div class="header-content">
-            <a href="#inicio" class="logo">
-                <!-- Sustituye el src por la ruta de la imagen de tu logo pequeño -->
-                <img src="ruta-de-tu-logo-pequeno.png" alt="Hache Uve Logo" class="logo-img">
-            </a>
-            <nav>
-                <ul>
-                    <li><a href="#inicio">Inicio</a></li>
-                    <li><a href="#servicios">Servicios</a></li>
-                    <li><a href="#proyectos">Proyectos</a></li>
-                    <li><a href="#sabermas">Saber más</a></li>
-                    <li><a href="#contacto" class="contact-btn">Contactar</a></li>
-                </ul>
-            </nav>
-        </div>
-    </header>
+    <div id="header-placeholder"></div>
 
-    <!-- Sección Hero Principal -->
     <section id="inicio" class="hero">
         <div class="hero-content">
             <h1>EDICIÓN VÍDEO<br>Y FOTOGRAFÍA</h1>
             
             <div class="hero-image-wrapper">
-                <!-- Sustituye el src por la ruta de la imagen principal (tu diseño de VHS o similar) -->
                 <img src="ruta-de-tu-imagen-central.png" alt="Diseño Principal Hache Uve" class="hero-main-img">
             </div>
 
@@ -290,19 +29,17 @@
         </div>
     </section>
 
-    <!-- Sección Proyectos -->
     <section id="proyectos" class="projects">
         <div class="container">
             <h2>Proyectos</h2>
             <div class="projects-grid">
                 <div class="project-item">
                     <div class="img-placeholder">
-                        <img src="image_01cd0c.jpg" alt="Equipos de fútbol de image_01cd0c.jpg">
+                        <img src="image_01cd0c.jpg" alt="Equipos de fútbol">
                     </div>
                 </div>
                 <div class="project-item">
                     <div class="img-placeholder">
-                        <!-- Placeholder visual para tu segundo proyecto -->
                         <div style="background:#222; height:100%; color:white; display:flex; align-items:center; justify-content:center; font-weight: bold;">
                           POSTPRODUCCIÓN VÍDEO
                         </div>
@@ -310,14 +47,13 @@
                 </div>
                 <div class="project-item">
                     <div class="img-placeholder">
-                        <img src="image_01cd46.jpg" alt="Herramientas Adobe CC de image_01cd46.jpg">
+                        <img src="image_01cd46.jpg" alt="Herramientas Adobe CC">
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Sección Servicios -->
     <section id="servicios" class="services">
         <div class="container">
             <h2>Servicios</h2>
@@ -327,24 +63,36 @@
         </div>
     </section>
 
-    <!-- Pie de página -->
-    <footer>
-        <div class="container" id="sabermas">
-            <p>&copy; 2026 Hache Uve. Todos los derechos reservados.</p>
-        </div>
-    </footer>
+    <div id="footer-placeholder"></div>
 
-    <!-- Script para cambiar el fondo de la barra superior al hacer scroll -->
     <script>
-        const header = document.getElementById('main-header');
-        
-        window.addEventListener('scroll', () => {
-            // Si el scroll baja de 50 píxeles, añade la clase oscura
-            if (window.scrollY > 50) {
-                header.classList.add('header-scrolled');
-            } else {
-                // Si vuelve arriba, quita la clase para que sea transparente
-                header.classList.remove('header-scrolled');
+        // Función asíncrona para cargar un archivo HTML en un div
+        async function loadComponent(id, file) {
+            try {
+                const response = await fetch(file);
+                if (!response.ok) throw new Error('Error al cargar la página');
+                const html = await response.text();
+                document.getElementById(id).innerHTML = html;
+            } catch (error) {
+                console.error(`Error cargando ${file}:`, error);
+            }
+        }
+
+        // Cargamos Header y Footer en paralelo. Una vez cargados, inicializamos el scroll.
+        Promise.all([
+            loadComponent('header-placeholder', 'header.html'),
+            loadComponent('footer-placeholder', 'footer.html')
+        ]).then(() => {
+            // Este código se ejecuta DESPUÉS de que el header.html ya esté inyectado en la página
+            const header = document.getElementById('main-header');
+            if (header) {
+                window.addEventListener('scroll', () => {
+                    if (window.scrollY > 50) {
+                        header.classList.add('header-scrolled');
+                    } else {
+                        header.classList.remove('header-scrolled');
+                    }
+                });
             }
         });
     </script>
