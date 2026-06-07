@@ -420,6 +420,30 @@ footer {
     text-underline-offset: 4px;
 }
 
+/* Botones específicos para la sección de servicios (sobre fondo naranja) */
+.service-contact-btn {
+    display: inline-block;
+    align-self: flex-start; /* Evita que el botón se estire a lo ancho */
+    border: 2px solid #ffffff; /* Contorno blanco limpio */
+    color: #ffffff;
+    padding: 12px 30px;
+    font-size: 0.9rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    border-radius: 30px;
+    text-decoration: none;
+    margin-top: 10px;
+    transition: background-color 0.3s ease, color 0.3s ease, transform 0.2s ease;
+}
+
+/* Efecto Hover interactivo */
+.service-contact-btn:hover {
+    background-color: #ffffff; /* Se rellena de blanco */
+    color: #ff7a00; /* El texto se vuelve del color naranja de tu fondo */
+    transform: translateY(-2px); /* Sutil efecto de elevación */
+}
+
 /* === Ajustes Receptivos (Móviles) === */
 @media (max-width: 768px) {
     header { padding: 15px 0; background-color: rgba(26, 26, 26, 0.95); } 
