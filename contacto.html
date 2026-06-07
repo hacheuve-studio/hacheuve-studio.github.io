@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contacto | Hache Uve Fotografía</title>
+    <meta name="description" content="¿Tienes un proyecto en mente? Contacta con Hache Uve Fotografía para servicios de fotografía deportiva, edición de vídeo y diseño profesional.">
+    
+    <link rel="icon" type="image/png" href="favicon.png">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700;900&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="style.css">
+
+    <!-- Estilos específicos para el formulario de contacto -->
+    <style>
+        .contact-wrapper {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 50px;
+            margin-top: 40px;
+        }
+
+        @media (min-width: 900px) {
+            .contact-wrapper {
+                grid-template-columns: 1fr 1fr; /* Dos columnas en pantallas grandes */
+            }
+        }
+
+        .contact-info h3 {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+        }
+
+        .contact-info p {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            margin-bottom: 30px;
+        }
+
+        .contact-method {
+            margin-bottom: 20px;
+        }
+
+        .contact-method strong {
+            display: block;
+            color: #1a1a1a;
+            text-transform: uppercase;
+            font-size: 0.9rem;
+            letter-spacing: 1px;
+        }
+
+        /* Estilos del Formulario */
+        .contact-form {
+            background-color: rgba(26, 26, 26, 0.95); /* Fondo oscuro para contrastar con el naranja */
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        }
+
+        .form-group {
+            margin-bottom: 25px;
+        }
+
+        .form-group label {
+            display: block;
+            font-size: 0.85rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            margin-bottom: 8px;
+            letter-spacing: 1px;
+            color: var(--primary-orange);
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 12px 15px;
+            border: 2px solid #444;
+            background-color: #222;
+            color: #fff;
+            font-family: var(--font-family);
+            font-size: 1rem;
+            border-radius: 6px;
+            box-sizing: border-box;
+            transition: border-color 0.3s ease;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--primary-orange);
+        }
+
+        .submit-btn {
+            background-color: var(--primary-orange);
+            color: var(--white);
+            border: none;
+            padding: 15px 40px;
+            font-size: 1rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            border-radius: 30px;
+            cursor: pointer;
+            width: 100%;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+        }
+
+        .submit-btn:hover {
+            background-color: #ff8700;
+            transform: translateY(-2px);
+        }
+    </style>
+</head>
+<body>
+
+    <div id="header-placeholder"></div>
+    
+    <main style="padding-top: 150px; min-height: 75vh;">
+        <div class="container">
+            <h2>Contacto</h2>
+            
+            <div class="contact-wrapper">
+                
+                <!-- Columna Izquierda: Información de contacto -->
+                <div class="contact-info">
+                    <h3>¿Creamos algo juntos?</h3>
+                    <p>Si buscas piezas audiovisuales con ritmo, fotografías que cuenten historias o un diseño impecable para tu marca, estás en el lugar correcto. Cuéntame tu idea y nos ponemos a trabajar.</p>
+                    
+                    <div class="contact-method">
+                        <strong>Email de trabajo</strong>
+                        <a href="mailto:contacto@hacheuve.com" style="color: #1a1a1a; font-weight: 700;">contacto@hacheuve.com</a>
+                    </div>
+                    
+                    <div class="contact-method">
+                        <strong>Redes Sociales</strong>
+                        <p><a href="#">Instagram</a> &bull; <a href="#">Vimeo</a> &bull; <a href="#">Behance</a></p>
+                    </div>
+                </div>
+
+                <!-- Columna Derecha: Formulario visual -->
+                <div class="contact-form">
+                    <form action="#" method="POST">
+                        <div class="form-group">
+                            <label for="nombre">Nombre completo</label>
+                            <input type="text" id="nombre" name="nombre" required placeholder="Tu nombre">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="email">Correo electrónico</label>
+                            <input type="email" id="email" name="email" required placeholder="tu@email.com">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="servicio">¿Qué necesitas?</label>
+                            <select id="servicio" name="servicio">
+                                <option value="fotografia">Fotografía Deportiva / Sesión</option>
+                                <option value="video">Edición de Vídeo / Postproducción</option>
+                                <option value="diseno">Diseño Gráfico / Identidad</option>
+                                <option value="otro">Otro proyecto creativo</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="mensaje">Cuéntame sobre tu proyecto</label>
+                            <textarea id="mensaje" name="mensaje" rows="5" required placeholder="Detalles, plazos, ideas..."></textarea>
+                        </div>
+                        
+                        <button type="submit" class="submit-btn">Enviar Mensaje</button>
+                    </form>
+                </div>
+
+            </div>
+        </div>
+    </main>
+
+    <div id="footer-placeholder"></div>
+
+    <script>
+        async function loadComponent(id, file) {
+            try {
+                const response = await fetch(file);
+                if (!response.ok) throw new Error('Error al cargar');
+                const html = await response.text();
+                document.getElementById(id).innerHTML = html;
+            } catch (error) {
+                console.error(`Error cargando ${file}:`, error);
+            }
+        }
+
+        Promise.all([
+            loadComponent('header-placeholder', 'header.html'),
+            loadComponent('footer-placeholder', 'footer.html')
+        ]).then(() => {
+            const header = document.getElementById('main-header');
+            if (header) {
+                window.addEventListener('scroll', () => {
+                    if (window.scrollY > 50) {
+                        header.classList.add('header-scrolled');
+                    } else {
+                        header.classList.remove('header-scrolled');
+                    }
+                });
+            }
+        });
+    </script>
+</body>
+</html>contacto
