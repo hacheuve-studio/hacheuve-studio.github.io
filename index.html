@@ -7,10 +7,10 @@
     <!-- SEO: Tu título estratégico para que Google te indexe por tu nicho exacto -->
     <title>Hache Uve Fotografía | Edición de Vídeo y Portfolio</title>
     
-    <!-- SEO: Meta descripción optimizada (Aparecerá en los resultados de Google) -->
+    <!-- SEO: Meta descripción optimizada -->
     <meta name="description" content="Portfolio oficial de Hache Uve Fotografía. Servicios profesionales de fotografía deportiva, edición de vídeo y postproducción. Descubre mis proyectos.">
     
-    <!-- Favicon: El pequeño logo para la pestaña de tu navegador -->
+    <!-- Favicon -->
     <link rel="icon" type="image/png" href="favicon.png">
     
     <!-- Fuentes tipográficas -->
@@ -21,7 +21,7 @@
     <!-- Enlace al archivo de estilos unificado -->
     <link rel="stylesheet" href="style.css">
     
-    <!-- Pequeño ajuste exclusivo de la página de inicio para optimizar los títulos SEO -->
+    <!-- Aquí SOLO dejamos los estilos críticos del título del Hero, sin pisar a Proyectos -->
     <style>
         .hero-seo-title {
             font-size: 1.3rem;
@@ -47,20 +47,16 @@
 </head>
 <body>
 
-    <!-- Contenedor donde JavaScript inyectará de forma automática tu header.html -->
+    <!-- Contenedor del Header automático -->
     <div id="header-placeholder"></div>
 
     <!-- Sección Hero Principal -->
     <section id="inicio" class="hero">
         <div class="hero-content">
-            <!-- SEO: Tu palabra clave principal en la etiqueta de máxima relevancia H1 -->
-            <!-- El H1 ahora es invisible para los usuarios, pero Google lo sigue leyendo perfectamente -->
             <h1 class="visually-hidden">Hache Uve Fotografía</h1>
-            <!-- Título secundario de gran impacto visual -->
             <h2 class="hero-main-title">EDICIÓN VÍDEO<br>Y FOTOGRAFÍA</h2>
             
             <div class="hero-image-wrapper">
-                <!-- Imagen central principal (tu diseño de VHS o marca) -->
                 <img src="logoPrincipio.avif" alt="Diseño Principal de Hache Uve Fotografía" class="hero-main-img">
             </div>
 
@@ -71,49 +67,70 @@
         </div>
     </section>
 
-    <!-- Sección Proyectos -->
+    <!-- Sección Proyectos Corregida y Sincronizada con el CSS -->
     <section id="proyectos" class="projects">
         <div class="container">
             <h2>Proyectos</h2>
             <div class="projects-grid">
                 
-                <!-- Proyecto 1: Vinculado a tu nueva subpágina de fotografía deportiva con visor interactivo -->
+                <!-- Proyecto 1: Fotografía Deportiva -->
                 <div class="project-item">
                     <a href="fotografia-deportiva.html" style="display: block; width: 100%; height: 100%;">
                         <div class="img-placeholder">
-                            <img src="image_01cd0c.jpg" alt="Fotografía deportiva de equipos de fútbol - Hache Uve Fotografía">
+                            <img src="DSC_0476.jpg" alt="Fotografía deportiva - Hache Uve Fotografía">
+                            <!-- Capa de texto oscuro en Hover -->
+                            <div class="project-overlay">
+                                <span class="project-title">Fotografía <br>Deportiva</span>
+                            </div>
                         </div>
                     </a>
                 </div>
                 
-                <!-- Proyecto 2: Postproducción de vídeo -->
+                <!-- Proyecto 2: Edición de Vídeo -->
                 <div class="project-item">
-                    <div class="img-placeholder">
-                        <div style="background:#222; height:100%; color:white; display:flex; align-items:center; justify-content:center; font-weight: bold; letter-spacing: 1px;">
-                          POSTPRODUCCIÓN VÍDEO
+                    <a href="index.html#servicios" style="display: block; width: 100%; height: 100%;">
+                        <div class="img-placeholder">
+                            <img src="timeline-video.avif" alt="Edición de vídeo profesional - Hache Uve Fotografía">
+                            <div class="project-overlay">
+                                <span class="project-title">Edición de Vídeo</span>
+                            </div>
                         </div>
-                    </div>
+                    </a>
                 </div>
                 
-                <!-- Proyecto 3: Herramientas Adobe -->
+                <!-- Proyecto 3: Postproducción -->
                 <div class="project-item">
-                    <div class="img-placeholder">
-                        <img src="image_01cd46.jpg" alt="Edición digital con herramientas de Adobe CC - Hache Uve Fotografía">
-                    </div>
+                    <a href="saber-mas.html" style="display: block; width: 100%; height: 100%;">
+                        <div class="img-placeholder">
+                            <img src="pcProgramas.jpg" alt="Herramientas de Adobe CC - Hache Uve Fotografía">
+                            <div class="project-overlay">
+                                <span class="project-title">Postproducción</span>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+
+                <!-- Proyecto 4: Postproducción -->
+                <div class="project-item">
+                    <a href="saber-mas.html" style="display: block; width: 100%; height: 100%;">
+                        <div class="img-placeholder">
+                            <img src="foto3.jpg" alt="Fotografía Urbana - Hache Uve Fotografía">
+                            <div class="project-overlay">
+                                <span class="project-title">Fotografía <br>Urbana</span>
+                            </div>
+                        </div>
+                    </a>
                 </div>
                 
             </div>
         </div>
     </section>
 
-    <!-- Sección Servicios -->
-    <!-- Sección Servicios Renovada con Botones de Acción -->
+    <!-- Sección Servicios con sus botones independientes -->
     <section id="servicios" class="services-split-section">
         <div class="services-split-grid">
             
-            <!-- COLUMNA IZQUIERDA: Bloque Naranja con Textos y Botones -->
             <div class="services-text-col">
-                
                 <!-- Servicio 01 -->
                 <div class="service-display-block">
                     <div class="service-display-header">
@@ -123,7 +140,6 @@
                     <p class="service-display-text">
                         Ofrecemos un servicio completo de edición de vídeo, adaptándonos tanto a formatos verticales como horizontales. Utilizamos herramientas de vanguardia como Adobe Premiere, junto con otros programas complementarios como CapCut y Photoshop, para garantizar resultados de alta calidad y satisfacción del cliente.
                     </p>
-                    <!-- Botón añadido -->
                     <a href="contacto.html" class="service-contact-btn">Solicitar Edición</a>
                 </div>
                 
@@ -136,13 +152,10 @@
                     <p class="service-display-text">
                         Ofrecemos un servicio profesional de fotografía, capturando momentos tanto en formato vertical como horizontal con precisión y creatividad. Utilizamos software de edición líderes en la industria, como Adobe Photoshop, para asegurar imágenes de alta calidad y un acabado excepcional. Estamos comprometidos a plasmar tus momentos más preciados con arte y técnica incomparables.
                     </p>
-                    <!-- Botón añadido -->
                     <a href="contacto.html" class="service-contact-btn">Solicitar Fotografía</a>
                 </div>
-                
             </div>
             
-            <!-- COLUMNA DERECHA: Bloque de Imágenes -->
             <div class="services-images-col">
                 <div class="service-img-wrapper">
                     <img src="timeline-video.avif" alt="Línea de tiempo de edición de vídeo - Hache Uve">
@@ -155,12 +168,10 @@
         </div>
     </section>
 
-    <!-- Contenedor donde JavaScript inyectará de forma automática tu footer.html -->
+    <!-- Contenedor del Footer automático -->
     <div id="footer-placeholder"></div>
 
-    <!-- SCRIPT ASÍNCRONO PARA LA CARGA DE MÓDULOS Y COMPORTAMIENTO DINÁMICO -->
     <script>
-        // Función dedicada a solicitar e inyectar fragmentos HTML externos
         async function loadComponent(id, file) {
             try {
                 const response = await fetch(file);
@@ -172,7 +183,6 @@
             }
         }
 
-        // Se cargan los componentes en paralelo y luego se activa la lógica de scroll para el header
         Promise.all([
             loadComponent('header-placeholder', 'header.html'),
             loadComponent('footer-placeholder', 'footer.html')
@@ -180,7 +190,6 @@
             const header = document.getElementById('main-header');
             if (header) {
                 window.addEventListener('scroll', () => {
-                    // Si se hace scroll hacia abajo más de 50px se activa el fondo oscuro
                     if (window.scrollY > 50) {
                         header.classList.add('header-scrolled');
                     } else {
