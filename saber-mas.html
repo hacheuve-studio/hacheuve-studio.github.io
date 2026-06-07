@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Saber más | Hache Uve Fotografía</title>
+    <meta name="description" content="Descubre la filosofía de trabajo de Hache Uve. Especialistas en edición de vídeo con ritmo y fotografía deportiva de alto impacto.">
+    
+    <link rel="icon" type="image/png" href="favicon.png">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700;900&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="style.css">
+
+    <style>
+        /* Estilos específicos para la sección Saber más */
+        .about-section {
+            padding-top: 150px;
+            padding-bottom: 80px;
+            min-height: 80vh;
+        }
+
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 60px;
+            align-items: center;
+            margin-top: 40px;
+        }
+
+        @media (min-width: 900px) {
+            .about-grid {
+                grid-template-columns: 1.2fr 0.8fr;
+            }
+        }
+
+        .about-content h3 {
+            font-size: 2rem;
+            color: #ffffff;
+            text-transform: uppercase;
+            margin-bottom: 20px;
+            font-weight: 700;
+        }
+
+        .about-content p {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: #ffffff;
+            margin-bottom: 20px;
+        }
+
+        /* ========================================================
+           MEJORA DE LOS RECUADROS (FILOSOFÍA / SERVICIOS)
+           ======================================================== */
+        .philosophy-container {
+            margin-top: 60px;
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 30px;
+        }
+
+        @media (min-width: 768px) {
+            .philosophy-container {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        .philosophy-card {
+            background-color: #1a1a1a; /* Fondo sólido oscuro para que destaque mucho más */
+            padding: 40px;
+            border-radius: 12px;
+            border: 1px solid #333; /* Borde sutil para delimitar el recuadro */
+            border-left: 6px solid var(--primary-orange, #ff7a00); /* Línea naranja más gruesa */
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between; /* Empuja el botón siempre hacia abajo */
+            align-items: flex-start;
+            transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        /* Hover simple y elegante para los recuadros */
+        .philosophy-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--primary-orange, #ff7a00);
+            box-shadow: 0 10px 30px rgba(255, 122, 0, 0.15); /* Sutil resplandor naranja */
+        }
+
+        .philosophy-card h4 {
+            font-size: 1.4rem;
+            color: #ffffff;
+            text-transform: uppercase;
+            margin-top: 0;
+            margin-bottom: 15px;
+            font-weight: 700;
+            letter-spacing: 1px;
+        }
+
+        .philosophy-card p {
+            font-size: 1rem;
+            line-height: 1.7;
+            color: #ffffff;
+            margin-bottom: 30px;
+        }
+
+        /* Botones internos de los recuadros */
+        .card-btn {
+            display: inline-block;
+            border: 2px solid var(--primary-orange, #ff7a00);
+            color: #ffffff;
+            padding: 10px 24px;
+            font-size: 0.85rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            border-radius: 4px;
+            text-decoration: none;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        .card-btn:hover {
+            background-color: var(--primary-orange, #ff7a00);
+            color: #ffffff;
+        }
+
+        /* Lado derecho: Imagen corporativa */
+        .about-visual {
+            position: relative;
+            width: 100%;
+            height: 400px;
+            background-color: #222;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            border: 1px solid #333;
+        }
+
+        .about-visual img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        /* ========================================================
+           MEJORA DEL BOTÓN "TRABAJEMOS JUNTOS" (ANTES DEL HOVER)
+           ======================================================== */
+        .about-cta {
+            text-align: center;
+            margin-top: 80px;
+        }
+
+        .about-cta p {
+            font-size: 1.3rem;
+            color: #ffffff;
+            margin-bottom: 25px;
+            font-weight: 500;
+        }
+
+        .btn-orange {
+            display: inline-block;
+            background-color: var(--primary-orange, #ff7a00);
+            color: #ffffff;
+            padding: 18px 50px; /* Un poco más grande para darle autoridad */
+            font-size: 1.05rem;
+            font-weight: 900; /* Texto más grueso y potente */
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            border-radius: 30px;
+            text-decoration: none;
+            /* Sombra fija antes del hover para que tenga relieve de botón físico */
+            box-shadow: 0 6px 20px rgba(255, 122, 0, 0.4); 
+            transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .btn-orange:hover {
+            background-color: #ff8700;
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(255, 122, 0, 0.6); /* La sombra se intensifica al tocarlo */
+        }
+    </style>
+</head>
+<body>
+
+    <div id="header-placeholder"></div>
+    
+    <main class="about-section">
+        <div class="container">
+            <h2>Saber más</h2>
+            
+            <div class="about-grid">
+                
+                <div class="about-content">
+                    <h3>Detrás de la lente y el software</h3>
+                    <p>
+                        Hache Uve nació de una obsesión clara: capturar el movimiento y transformarlo en algo memorable. En un entorno saturado de imágenes estáticas y vídeos genéricos, nos especializamos en dotar de identidad, ritmo y fuerza visual a cada proyecto.
+                    </p>
+                    <p>
+                        No entendemos la fotografía sin la edición, ni el vídeo sin una postproducción milimétrica. Cada corte de vídeo, cada corrección de color y cada ráfaga de obturador en un evento deportivo están pensados para transmitir la tensión, la velocidad y la emoción pura del momento real.
+                    </p>
+                </div>
+                
+                <div class="about-visual">
+                    <img src="tu-foto-perfil.jpg" alt="Hache Uve trabajando en edición y fotografía">
+                </div>
+
+            </div>
+
+            <!-- Bloques de Filosofía de Trabajo Actualizados -->
+            <div class="philosophy-container">
+                
+                <!-- Recuadro 1: Fotografía -->
+                <div class="philosophy-card">
+                    <div>
+                        <h4>Fotografía con Enfoque Deportivo</h4>
+                        <p>La fotografía deportiva no permite segundas oportunidades. Exige anticipación, conocer el juego y dominar el equipo técnico para congelar la décima de segundo exacta donde se decide la gloria o la derrota.</p>
+                    </div>
+                    <!-- Botón directo a tu subpágina de fotografía deportiva -->
+                    <a href="fotografia-deportiva.html" class="card-btn">Ver Galería Foto</a>
+                </div>
+                
+                <!-- Recuadro 2: Vídeo -->
+                <div class="philosophy-card">
+                    <div>
+                        <h4>Edición de Vídeo con Ritmo</h4>
+                        <p>Un buen montaje no es solo juntar clips; es dominar el tempo, la música y los efectos para retener la atención del espectador desde el primer segundo hasta el último, ya sea en formato de cine horizontal o contenido vertical dinámico.</p>
+                    </div>
+                    <!-- Botón que redirige a la sección de proyectos de la Home -->
+                    <a href="edicion-video.html" class="card-btn">Ver Proyectos Vídeo</a>
+                </div>
+                
+            </div>
+
+            <!-- Zona de llamada a la acción comercial optimizada -->
+            <div class="about-cta">
+                <p>¿Tienes una idea en mente o un evento que necesitas cubrir?</p>
+                <a href="contacto.html" class="btn-orange">Trabajemos juntos</a>
+            </div>
+
+        </div>
+    </main>
+
+    <div id="footer-placeholder"></div>
+
+    <script>
+        async function loadComponent(id, file) {
+            try {
+                const response = await fetch(file);
+                if (!response.ok) throw new Error('Error al cargar');
+                const html = await response.text();
+                document.getElementById(id).innerHTML = html;
+            } catch (error) {
+                console.error(`Error cargando ${file}:`, error);
+            }
+        }
+
+        Promise.all([
+            loadComponent('header-placeholder', 'header.html'),
+            loadComponent('footer-placeholder', 'footer.html')
+        ]).then(() => {
+            const header = document.getElementById('main-header');
+            if (header) {
+                window.addEventListener('scroll', () => {
+                    if (window.scrollY > 50) {
+                        header.classList.add('header-scrolled');
+                    } else {
+                        header.classList.remove('header-scrolled');
+                    }
+                });
+            }
+        });
+    </script>
+</body>
+</html>
