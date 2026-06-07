@@ -346,6 +346,80 @@ footer {
     }
 }
 
+/* ========================================================
+   ESTILOS DEL FOOTER Y REDES SOCIALES
+   ======================================================== */
+
+.main-footer {
+    background-color: #111111; /* Un gris casi negro elegante */
+    padding: 60px 20px 40px;
+    text-align: center;
+    border-top: 1px solid #333;
+}
+
+.footer-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 30px;
+}
+
+/* Redes Sociales */
+.social-links {
+    display: flex;
+    justify-content: center;
+    gap: 25px;
+}
+
+.social-links a {
+    color: #ffffff; /* Los iconos serán blancos por defecto */
+    display: inline-block;
+    transition: transform 0.3s ease, color 0.3s ease;
+}
+
+.social-icon {
+    width: 28px;
+    height: 28px;
+    fill: currentColor; /* Esto obliga al SVG a copiar el color del texto */
+}
+
+/* Efecto al pasar el ratón */
+.social-links a:hover {
+    color: #ff7a00; /* Se vuelven de tu naranja corporativo */
+    transform: translateY(-5px); /* Pequeño salto hacia arriba */
+}
+
+/* Textos inferiores y enlaces legales */
+.footer-bottom {
+    font-size: 0.85rem;
+    color: #888888; /* Texto secundario en gris */
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.footer-bottom p {
+    margin: 0;
+}
+
+.footer-links a {
+    color: #bbbbbb;
+    text-decoration: none;
+    transition: color 0.3s ease;
+    text-transform: uppercase;
+    font-weight: 500;
+    letter-spacing: 1px;
+    font-size: 0.75rem;
+}
+
+.footer-links a:hover {
+    color: #ffffff;
+    text-decoration: underline;
+    text-underline-offset: 4px;
+}
+
 /* === Ajustes Receptivos (Móviles) === */
 @media (max-width: 768px) {
     header { padding: 15px 0; background-color: rgba(26, 26, 26, 0.95); } 
