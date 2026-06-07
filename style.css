@@ -236,6 +236,116 @@ footer {
     border: 0 !important;
 }
 
+/* ========================================================
+                ESTILOS SECCIÓN SERVICIOS
+   ======================================================== */
+
+.services-split-section {
+    width: 100%;
+    background-color: #ff7a00; /* El naranja vibrante de tu marca */
+    font-family: 'Montserrat', sans-serif;
+    overflow: hidden;
+}
+
+.services-split-grid {
+    display: grid;
+    grid-template-columns: 43% 57%; /* Proporción clavada a la captura */
+    background-color: #ff7a00;
+}
+
+/* Columna de textos */
+.services-text-col {
+    padding: 80px 60px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 80px; /* Separación simétrica entre el bloque 01 y 02 */
+}
+
+.service-display-block {
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+}
+
+.service-display-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    color: #ffffff;
+}
+
+.service-display-title {
+    font-size: 2.4rem;
+    font-weight: 700;
+    margin: 0;
+    color: #ffffff;
+    letter-spacing: -0.5px;
+}
+
+/* El subrayado exclusivo del primer apartado */
+.title-underlined {
+    text-decoration: underline;
+    text-underline-offset: 10px;
+    text-decoration-thickness: 2px;
+}
+
+.service-display-num {
+    font-size: 1.8rem;
+    font-weight: 500;
+    opacity: 0.8;
+}
+
+.service-display-text {
+    font-size: 1.05rem;
+    line-height: 1.7;
+    color: #ffffff;
+    margin: 0;
+    font-weight: 400;
+    max-width: 90%;
+}
+
+/* Columna de imágenes */
+.services-images-col {
+    display: grid;
+    grid-template-rows: 1fr 1fr;
+    gap: 15px; /* Crea la línea divisoria naranja exacta entre las dos fotos */
+    padding-bottom: 15px; /* Crea el marco naranja inferior */
+}
+
+.service-img-wrapper {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+
+.services-images-col img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Hace que encajen perfectamente sin deformarse */
+    display: block;
+}
+
+/* RESPONSIVE: Para que en móviles no se rompa y se vea en vertical */
+@media (max-width: 992px) {
+    .services-split-grid {
+        grid-template-columns: 1fr; /* Pasa a una sola columna */
+    }
+    
+    .services-text-col {
+        padding: 50px 30px;
+        gap: 50px;
+    }
+    
+    .service-display-title {
+        font-size: 1.8rem;
+    }
+    
+    .services-images-col {
+        padding: 0 15px 15px 15px; /* Ajuste de marco en móviles */
+    }
+}
+
 /* === Ajustes Receptivos (Móviles) === */
 @media (max-width: 768px) {
     header { padding: 15px 0; background-color: rgba(26, 26, 26, 0.95); } 
