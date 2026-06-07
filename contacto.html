@@ -14,7 +14,6 @@
     
     <link rel="stylesheet" href="style.css">
 
-    <!-- Estilos específicos para el formulario de contacto -->
     <style>
         .contact-wrapper {
             display: grid;
@@ -25,7 +24,7 @@
 
         @media (min-width: 900px) {
             .contact-wrapper {
-                grid-template-columns: 1fr 1fr; /* Dos columnas en pantallas grandes */
+                grid-template-columns: 1fr 1fr;
             }
         }
 
@@ -56,7 +55,7 @@
 
         /* Estilos del Formulario */
         .contact-form {
-            background-color: rgba(26, 26, 26, 0.95); /* Fondo oscuro para contrastar con el naranja */
+            background-color: rgba(26, 26, 26, 0.95);
             padding: 40px;
             border-radius: 12px;
             box-shadow: 0 10px 30px rgba(0,0,0,0.3);
@@ -117,6 +116,16 @@
             background-color: #ff8700;
             transform: translateY(-2px);
         }
+
+        /* Estilo para el mensaje de estado del envío */
+        #form-status {
+            text-align: center;
+            margin-top: 20px;
+            font-weight: 700;
+            font-size: 0.95rem;
+            letter-spacing: 0.5px;
+            display: none; /* Escondido por defecto */
+        }
     </style>
 </head>
 <body>
@@ -129,7 +138,6 @@
             
             <div class="contact-wrapper">
                 
-                <!-- Columna Izquierda: Información de contacto -->
                 <div class="contact-info">
                     <h3>¿Creamos algo juntos?</h3>
                     <p>Si buscas piezas audiovisuales con ritmo, fotografías que cuenten historias o un diseño impecable para tu marca, estás en el lugar correcto. Cuéntame tu idea y nos ponemos a trabajar.</p>
@@ -145,9 +153,9 @@
                     </div>
                 </div>
 
-                <!-- Columna Derecha: Formulario visual -->
                 <div class="contact-form">
-                    <form action="https://formspree.io/f/xvznkqea" method="POST">
+                    <!-- 1. IMPORTANTE: Hemos añadido el ID "my-form" -->
+                    <form id="my-form" action="https://formspree.io/f/xvznkqea" method="POST">
                         <div class="form-group">
                             <label for="nombre">Nombre completo</label>
                             <input type="text" id="nombre" name="nombre" required placeholder="Tu nombre">
@@ -173,7 +181,10 @@
                             <textarea id="mensaje" name="mensaje" rows="5" required placeholder="Detalles, plazos, ideas..."></textarea>
                         </div>
                         
-                        <button type="submit" class="submit-btn">Enviar Mensaje</button>
+                        <button type="submit" class="submit-btn" id="submit-button">Enviar Mensaje</button>
+                        
+                        <!-- 2. Contenedor invisible para los mensajes de éxito/error -->
+                        <div id="form-status"></div>
                     </form>
                 </div>
 
@@ -184,6 +195,61 @@
     <div id="footer-placeholder"></div>
 
     <script>
+        // ==========================================
+        // CONTROL EN SEGUNDO PLANO DEL FORMULARIO
+        // ==========================================
+        const form = document.getElementById("my-form");
+        const status = document.getElementById("form-status");
+        const button = document.getElementById("submit-button");
+
+        async function handleSubmit(event) {
+            event.preventDefault(); // Evita que la página se recargue o se vaya a Formspree
+            
+            button.disabled = true;
+            button.innerText = "Enviando...";
+            
+            const data = new FormData(event.target);
+            
+            try {
+                const response = await fetch(event.target.action, {
+                    method: form.method,
+                    body: data,
+                    headers: {
+                        'Accept': 'application/json' // Le dice a Formspree que responda en JSON y no redirija
+                    }
+                });
+                
+                if (response.ok) {
+                    // ÉXITO: Mostramos mensaje verde, limpiamos formulario y restauramos botón
+                    status.style.display = "block";
+                    status.style.color = "#00ff66"; // Verde neón moderno
+                    status.innerText = "¡MENSAJE ENVIADO! ME PONDRÉ EN CONTACTO CONTIGO PRONTO.";
+                    form.reset(); // El truco que borra todo lo escrito
+                } else {
+                    // ERROR DE RESPUESTA
+                    status.style.display = "block";
+                    status.style.color = "#ff3333";
+                    status.innerText = "Oops, hubo un problema. Por favor, inténtalo de nuevo.";
+                }
+            } catch (error) {
+                // ERROR DE CONEXIÓN
+                status.style.display = "block";
+                status.style.color = "#ff3333";
+                status.innerText = "Error de conexión. Revisa tu red.";
+            } finally {
+                // Devolvemos el botón a su estado original pase lo que pase
+                button.disabled = false;
+                button.innerText = "Enviar Mensaje";
+            }
+        }
+        
+        // Escuchar el momento en el que el usuario pulsa el botón enviar
+        form.addEventListener("submit", handleSubmit);
+
+
+        // ==========================================
+        // CARGA MODULAR DE HEADER Y FOOTER
+        // ==========================================
         async function loadComponent(id, file) {
             try {
                 const response = await fetch(file);
@@ -212,4 +278,4 @@
         });
     </script>
 </body>
-</html>contacto
+</html>
