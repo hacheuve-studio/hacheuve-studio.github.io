@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <title>Diseño Gráfico y Creativo | Hache Uve</title>
+    <meta name="description" content="Portfolio oficial de diseños de Hache Uve. Explora mis trabajos en diseño gráfico, cartelería, identidad visual y composiciones creativas.">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700;900&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div id="header-placeholder"></div>
+
+    <main class="gallery-page">
+        <div class="container-gallery">
+            
+            <div class="gallery-intro">
+                <h2>Diseño Gráfico</h2>
+                <p>Creatividad, composición e identidad visual. Explora mis proyectos de cartelería, branding y arte digital adaptados a todo tipo de formatos.</p>
+            </div>
+
+            <div id="designs-gallery" class="gallery-grid">
+                <div class="gallery-loading">Cargando creaciones...</div>
+            </div>
+
+        </div>
+    </main>
+
+    <div id="footer-placeholder"></div>
+
+ <!-- SCRIPT UNIFICADO: Componentes, Escáner de Carpeta y Efecto Scroll -->
+    <script>
+        // Ruta de la carpeta de archivos (Recuerda cambiarla por './disenos/' o './urbana/' en sus respectivas páginas)
+        const dir = "./disenos/"; 
+
+        async function scanAndBuildGallery() {
+            // Busca el contenedor de la galería (Se adapta a 'sport-gallery', 'designs-gallery' o 'urban-gallery' de forma automática)
+            const galleryContainer = document.getElementById("sport-gallery") || 
+                                     document.getElementById("designs-gallery") || 
+                                     document.getElementById("urban-gallery");
+            
+            if (!galleryContainer) return;
+            
+            try {
+                // 1. Solicitamos el índice de la carpeta al servidor local
+                const response = await fetch(dir);
+                if (!response.ok) throw new Error("No se pudo acceder a la carpeta");
+                
+                const htmlText = await response.text();
+                
+                // 2. Analizamos el contenido devuelto
+                const parser = new DOMParser();
+                const doc = parser.parseFromString(htmlText, "text/html");
+                const links = doc.querySelectorAll("a");
+                
+                // Limpiamos el mensaje de "Cargando..."
+                galleryContainer.innerHTML = "";
+                let imageCount = 0;
+
+                // 3. Filtramos los archivos de imagen
+                links.forEach(link => {
+                    const href = link.getAttribute("href");
+                    
+                    if (href && href.match(/\.(jpe?g|png|webp|avif)$/i)) {
+                        imageCount++;
+                        
+                        // 4. Creamos la estructura respetando el flujo original
+                        const item = document.createElement("div");
+                        item.className = "gallery-item";
+                        
+                        item.innerHTML = `<img src="${dir}${href}" alt="Portfolio - Hache Uve" loading="lazy">`;
+                        
+                        galleryContainer.appendChild(item);
+                    }
+                });
+
+                if (imageCount === 0) {
+                    galleryContainer.innerHTML = `<div class='gallery-loading'>¡Pronto verás archivos por aquí! Añade imágenes a la carpeta ${dir}</div>`;
+                }
+
+            } catch (error) {
+                console.error("Error cargando los archivos automáticamente:", error);
+                galleryContainer.innerHTML = "<div class='gallery-loading'>Asegúrate de estar ejecutando la web en tu servidor local (Live Server) para que se puedan escanear los archivos.</div>";
+            }
+        }
+
+        // Sistema asíncrono de carga de componentes (Header y Footer)
+        async function loadComponent(id, file) {
+            try {
+                const response = await fetch(file);
+                if (!response.ok) throw new Error('Error al procesar el módulo');
+                const html = await response.text();
+                document.getElementById(id).innerHTML = html;
+            } catch (error) {
+                console.error(`Error cargando el archivo ${file}:`, error);
+            }
+        }
+
+        // Ejecutamos todo de forma coordinada cuando los componentes estén listos
+        Promise.all([
+            loadComponent('header-placeholder', 'header.html'),
+            loadComponent('footer-placeholder', 'footer.html')
+        ]).then(() => {
+            
+            // 1. Lanzamos el escáner para pintar tus fotos/diseños
+            scanAndBuildGallery();
+
+            // 2. Activamos el fondo oscuro del Header al hacer scroll hacia abajo
+            const header = document.querySelector('header');
+            if (header) {
+                window.addEventListener('scroll', () => {
+                    if (window.scrollY > 50) {
+                        header.classList.add('header-scrolled');
+                    } else {
+                        header.classList.remove('header-scrolled');
+                    }
+                });
+            }
+        });
+    </script>
+</body>
+</html>
