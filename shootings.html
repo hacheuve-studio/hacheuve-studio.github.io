@@ -216,7 +216,7 @@
                 const item = document.createElement("div");
                 item.className = "gallery-item";
                 
-                const rutaImagen = `${dir}img (${i}).png`;
+                const rutaImagen = `${dir}img (${i}).jpg`;
                 item.innerHTML = `<img src="${rutaImagen}" alt="Portfolio Shootings - Hache Uve" loading="lazy">`;
                 
                 // Evento al hacer clic: Abre el visor en la imagen correspondiente
@@ -234,7 +234,7 @@
             const lightbox = document.getElementById("lightbox");
             const lightboxImg = document.getElementById("lightbox-img");
             
-            lightboxImg.src = `${dir}img (${currentIdx}).png`;
+            lightboxImg.src = `${dir}img (${currentIdx}).jpg`;
             lightbox.style.display = "flex";
             document.body.style.overflow = "hidden"; // Desactiva el scroll de fondo para mejorar la experiencia
         }
