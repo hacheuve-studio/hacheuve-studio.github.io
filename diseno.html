@@ -3,18 +3,173 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
     <title>Diseño Gráfico y Creativo | Hache Uve</title>
     <meta name="description" content="Portfolio oficial de diseños de Hache Uve. Explora mis trabajos en diseño gráfico, cartelería, identidad visual y composiciones creativas.">
-    <link rel="icon" type="image/png" href="favicon.png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700;900&display=swap" rel="stylesheet">
-    
+    <link rel="icon" type="image/png" href="favicon.png">
+    <!-- Enlazamos tu CSS global para mantener el header y footer idénticos -->
     <link rel="stylesheet" href="style.css">
+
+    <style>
+        /* Estilos específicos para la página de la galería */
+        .gallery-page {
+            padding-top: 140px;
+            padding-bottom: 80px;
+            min-height: 80vh;
+        }
+
+        .gallery-intro {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .gallery-intro p {
+            font-size: 1.1rem;
+            max-width: 600px;
+            margin: 20px auto 0;
+            opacity: 0.9;
+            line-height: 1.6;
+        }
+
+        /* DISEÑO DE COLUMNAS ESTILO PINTEREST (Respeta tamaños originales) */
+        .gallery-grid {
+            column-count: 3; /* Número de columnas en pantallas grandes */
+            column-gap: 20px; /* Espacio horizontal entre columnas */
+            padding: 0 20px;
+        }
+
+        .gallery-item {
+            break-inside: avoid; /* Evita que una imagen se parta entre dos columnas */
+            margin-bottom: 20px; /* Espacio vertical entre las imágenes */
+            position: relative;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+            background-color: rgba(0,0,0,0.05);
+            cursor: pointer; /* Mano al pasar por encima para indicar clic */
+            transition: transform 0.4s cubic-bezier(0.165, 0.84, 0.44, 1), box-shadow 0.4s ease;
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: auto; /* Permite que la altura sea proporcional a la original */
+            display: block;
+            transition: transform 0.6s ease;
+        }
+
+        /* Efecto premium al pasar el ratón por encima */
+        .gallery-item:hover {
+            transform: scale(1.02) translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+            z-index: 5;
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.04);
+        }
+
+        /* Estado de carga por si tarda un pelín */
+        .gallery-loading {
+            text-align: center;
+            font-size: 1.2rem;
+            padding: 50px;
+            font-weight: 500;
+            letter-spacing: 1px;
+            color: #ffffff;
+        }
+
+        /* ========================================================
+           ESTILOS DEL LIGHTBOX (PANTALLA COMPLETA) 
+           ======================================================== */
+        .lightbox {
+            display: none; /* Oculto por defecto */
+            position: fixed;
+            z-index: 10000; /* Siempre por encima de todo, incluso del header */
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.95); /* Fondo oscuro semi-transparente */
+            justify-content: center;
+            align-items: center;
+            user-select: none;
+        }
+
+        .lightbox-img {
+            max-width: 85%;
+            max-height: 85vh;
+            object-fit: contain;
+            border-radius: 4px;
+            box-shadow: 0 0 35px rgba(0, 0, 0, 0.8);
+        }
+
+        /* Cruz blanca superior derecha */
+        .lightbox-close {
+            position: absolute;
+            top: 30px;
+            right: 40px;
+            color: #ffffff;
+            font-size: 50px;
+            font-weight: 300;
+            cursor: pointer;
+            line-height: 1;
+            transition: transform 0.2s ease, opacity 0.2s ease;
+        }
+
+        .lightbox-close:hover {
+            transform: scale(1.1);
+            opacity: 0.7;
+        }
+
+        /* Flechas blancas de navegación */
+        .lightbox-btn {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #ffffff;
+            font-size: 60px;
+            font-weight: 300;
+            padding: 20px;
+            cursor: pointer;
+            transition: transform 0.2s ease, opacity 0.2s ease;
+        }
+
+        .lightbox-btn:hover {
+            transform: translateY(-50%) scale(1.1);
+            opacity: 0.7;
+        }
+
+        .lightbox-prev {
+            left: 30px;
+        }
+
+        .lightbox-next {
+            right: 30px;
+        }
+
+        /* Adaptación a tablets y móviles */
+        @media (max-width: 992px) {
+            .gallery-grid { column-count: 2; } /* 2 columnas en pantallas medianas */
+        }
+
+        @media (max-width: 768px) {
+            .gallery-page { padding-top: 110px; }
+            .gallery-grid { column-count: 1; gap: 15px; } /* 1 sola columna en móviles */
+            
+            /* Ajustes del visor en móviles para que no estorbe */
+            .lightbox-img { max-width: 95%; }
+            .lightbox-close { top: 20px; right: 25px; font-size: 40px; }
+            .lightbox-btn { font-size: 45px; padding: 10px; }
+            .lightbox-prev { left: 10px; }
+            .lightbox-next { right: 10px; }
+        }
+    </style>
 </head>
 <body>
 
+    <!-- Tu menú dinámico se inyectará aquí -->
     <div id="header-placeholder"></div>
 
     <main class="gallery-page">
@@ -32,65 +187,103 @@
         </div>
     </main>
 
+    <!-- VISOR EN PANTALLA COMPLETA (LIGHTBOX) -->
+    <div id="lightbox" class="lightbox">
+        <span class="lightbox-close" id="lightbox-close">&times;</span>
+        <span class="lightbox-btn lightbox-prev" id="lightbox-prev">&#10094;</span>
+        <img class="lightbox-img" id="lightbox-img" src="" alt="Visualización ampliada">
+        <span class="lightbox-btn lightbox-next" id="lightbox-next">&#10095;</span>
+    </div>
+
+    <!-- Tu footer dinámico se inyectará aquí -->
     <div id="footer-placeholder"></div>
 
- <!-- SCRIPT UNIFICADO: Componentes, Escáner de Carpeta y Efecto Scroll -->
+    <!-- SCRIPT UNIFICADO: Componentes, Generador Numérico, Scroll y Lightbox -->
     <script>
-        // Ruta de la carpeta de archivos (Recuerda cambiarla por './disenos/' o './urbana/' en sus respectivas páginas)
+        // 1. CONFIGURACIÓN INDIVIDUAL PARA CADA PÁGINA
         const dir = "./disenos/"; 
+        const totalFotos = 4; // Cambia este número según las fotos reales de la carpeta
+        
+        let currentIdx = 1; // Controla la foto activa en el visor de pantalla completa
 
         async function scanAndBuildGallery() {
-            // Busca el contenedor de la galería (Se adapta a 'sport-gallery', 'designs-gallery' o 'urban-gallery' de forma automática)
             const galleryContainer = document.getElementById("sport-gallery") || 
                                      document.getElementById("designs-gallery") || 
                                      document.getElementById("urban-gallery");
             
             if (!galleryContainer) return;
             
-            try {
-                // 1. Solicitamos el índice de la carpeta al servidor local
-                const response = await fetch(dir);
-                if (!response.ok) throw new Error("No se pudo acceder a la carpeta");
-                
-                const htmlText = await response.text();
-                
-                // 2. Analizamos el contenido devuelto
-                const parser = new DOMParser();
-                const doc = parser.parseFromString(htmlText, "text/html");
-                const links = doc.querySelectorAll("a");
-                
-                // Limpiamos el mensaje de "Cargando..."
-                galleryContainer.innerHTML = "";
-                let imageCount = 0;
+            galleryContainer.innerHTML = "";
 
-                // 3. Filtramos los archivos de imagen
-                links.forEach(link => {
-                    const href = link.getAttribute("href");
-                    
-                    if (href && href.match(/\.(jpe?g|png|webp|avif)$/i)) {
-                        imageCount++;
-                        
-                        // 4. Creamos la estructura respetando el flujo original
-                        const item = document.createElement("div");
-                        item.className = "gallery-item";
-                        
-                        item.innerHTML = `<img src="${dir}${href}" alt="Portfolio - Hache Uve" loading="lazy">`;
-                        
-                        galleryContainer.appendChild(item);
-                    }
-                });
-
-                if (imageCount === 0) {
-                    galleryContainer.innerHTML = `<div class='gallery-loading'>¡Pronto verás archivos por aquí! Añade imágenes a la carpeta ${dir}</div>`;
-                }
-
-            } catch (error) {
-                console.error("Error cargando los archivos automáticamente:", error);
-                galleryContainer.innerHTML = "<div class='gallery-loading'>Asegúrate de estar ejecutando la web en tu servidor local (Live Server) para que se puedan escanear los archivos.</div>";
+            // 2. BUCLE MÁGICO: Construye los nombres img (1).jpg, img (2).jpg...
+            for (let i = 1; i <= totalFotos; i++) {
+                const item = document.createElement("div");
+                item.className = "gallery-item";
+                
+                const rutaImagen = `${dir}img (${i}).jpg`;
+                item.innerHTML = `<img src="${rutaImagen}" alt="Portfolio - Hache Uve" loading="lazy">`;
+                
+                // Evento de clic: Abre la pantalla completa en la posición actual
+                item.addEventListener("click", () => openLightbox(i));
+                
+                galleryContainer.appendChild(item);
             }
         }
 
-        // Sistema asíncrono de carga de componentes (Header y Footer)
+        // ========================================================
+        // FUNCIONES DEL VISOR DE PANTALLA COMPLETA (LIGHTBOX)
+        // ========================================================
+        function openLightbox(index) {
+            currentIdx = index;
+            const lightbox = document.getElementById("lightbox");
+            const lightboxImg = document.getElementById("lightbox-img");
+            
+            lightboxImg.src = `${dir}img (${currentIdx}).jpg`;
+            lightbox.style.display = "flex";
+            document.body.style.overflow = "hidden"; // Desactiva el scroll de la web de fondo
+        }
+
+        function closeLightbox() {
+            document.getElementById("lightbox").style.display = "none";
+            document.body.style.overflow = "auto"; // Devuelve el scroll a la web
+        }
+
+        function nextImage() {
+            currentIdx = currentIdx >= totalFotos ? 1 : currentIdx + 1;
+            document.getElementById("lightbox-img").src = `${dir}img (${currentIdx}).jpg`;
+        }
+
+        function prevImage() {
+            currentIdx = currentIdx <= 1 ? totalFotos : currentIdx - 1;
+            document.getElementById("lightbox-img").src = `${dir}img (${currentIdx}).jpg`;
+        }
+
+        // Asignación de eventos a los botones interactivos del visor
+        document.getElementById("lightbox-close").addEventListener("click", closeLightbox);
+        document.getElementById("lightbox-next").addEventListener("click", nextImage);
+        document.getElementById("lightbox-prev").addEventListener("click", prevImage);
+
+        // Cerrar al hacer clic en el fondo oscuro exterior
+        document.getElementById("lightbox").addEventListener("click", (e) => {
+            if (e.target.id === "lightbox") {
+                closeLightbox();
+            }
+        });
+
+        // Control por teclado premium (Flechas y tecla Escape)
+        window.addEventListener("keydown", (e) => {
+            const lightbox = document.getElementById("lightbox");
+            if (lightbox.style.display === "flex") {
+                if (e.key === "ArrowRight") nextImage();
+                if (e.key === "ArrowLeft") prevImage();
+                if (e.key === "Escape") closeLightbox();
+            }
+        });
+
+
+        // ========================================================
+        // CARGA DE COMPONENTES GLOBALES (HEADER Y FOOTER)
+        // ========================================================
         async function loadComponent(id, file) {
             try {
                 const response = await fetch(file);
@@ -102,16 +295,16 @@
             }
         }
 
-        // Ejecutamos todo de forma coordinada cuando los componentes estén listos
+        // Sincronización final tras inyectar el Header y Footer
         Promise.all([
             loadComponent('header-placeholder', 'header.html'),
             loadComponent('footer-placeholder', 'footer.html')
         ]).then(() => {
             
-            // 1. Lanzamos el escáner para pintar tus fotos/diseños
+            // 1. Cargamos e imprimimos las imágenes
             scanAndBuildGallery();
 
-            // 2. Activamos el fondo oscuro del Header al hacer scroll hacia abajo
+            // 2. Activamos el fondo oscuro del Header al hacer scroll
             const header = document.querySelector('header');
             if (header) {
                 window.addEventListener('scroll', () => {
