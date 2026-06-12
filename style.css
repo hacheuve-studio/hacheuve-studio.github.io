@@ -8,8 +8,16 @@
     --font-family: 'Montserrat', sans-serif;
 }
 
+/* Activa el desplazamiento suave en toda la web */
 html {
-    scroll-behavior: smooth; /* Animación de arrastre fluido en toda la web */
+    scroll-behavior: smooth;
+}
+
+/* Truco Pro: Evita que el header fijo tape el principio de las secciones */
+#proyectos, 
+#servicios, 
+#saber-mas {
+    scroll-margin-top: 90px; /* Ajusta este número según la altura de tu menú */
 }
 
 body {

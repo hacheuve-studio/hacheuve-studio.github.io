@@ -202,7 +202,7 @@
     <script>
         // 1. CONFIGURACIÓN INDIVIDUAL PARA CADA PÁGINA
         const dir = "./disenos/"; 
-        const totalFotos = 4; // Cambia este número según las fotos reales de la carpeta
+        const totalFotos = 15; // Cambia este número según las fotos reales de la carpeta
         
         let currentIdx = 1; // Controla la foto activa en el visor de pantalla completa
 
@@ -220,7 +220,7 @@
                 const item = document.createElement("div");
                 item.className = "gallery-item";
                 
-                const rutaImagen = `${dir}img (${i}).png`;
+                const rutaImagen = `${dir}img (${i}).jpg`;
                 item.innerHTML = `<img src="${rutaImagen}" alt="Portfolio - Hache Uve" loading="lazy">`;
                 
                 // Evento de clic: Abre la pantalla completa en la posición actual
@@ -238,7 +238,7 @@
             const lightbox = document.getElementById("lightbox");
             const lightboxImg = document.getElementById("lightbox-img");
             
-            lightboxImg.src = `${dir}img (${currentIdx}).png`;
+            lightboxImg.src = `${dir}img (${currentIdx}).jpg`;
             lightbox.style.display = "flex";
             document.body.style.overflow = "hidden"; // Desactiva el scroll de la web de fondo
         }
@@ -250,12 +250,12 @@
 
         function nextImage() {
             currentIdx = currentIdx >= totalFotos ? 1 : currentIdx + 1;
-            document.getElementById("lightbox-img").src = `${dir}img (${currentIdx}).png`;
+            document.getElementById("lightbox-img").src = `${dir}img (${currentIdx}).jpg`;
         }
 
         function prevImage() {
             currentIdx = currentIdx <= 1 ? totalFotos : currentIdx - 1;
-            document.getElementById("lightbox-img").src = `${dir}img (${currentIdx}).png`;
+            document.getElementById("lightbox-img").src = `${dir}img (${currentIdx}).jpg`;
         }
 
         // Asignación de eventos a los botones interactivos del visor
