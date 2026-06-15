@@ -217,7 +217,7 @@ h2 {
    ======================================================== */
 .projects-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(390px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(min(390px, 100%), 1fr));
     gap: 30px;
 }
 
@@ -725,22 +725,21 @@ h2 {
 
 @media (max-width: 768px) {
     /* ========================================================
-       1. SISTEMA DE NAVEGACIÓN Y MENÚ HAMBURGUESA
+       1. SISTEMA DE NAVEGACIÓN Y MENÚ HAMBURGUESA (Perfecto)
        ======================================================== */
     header { 
         padding: 15px 0; 
         background-color: rgba(26, 26, 26, 0.98) !important; 
     } 
     
-    /* Forzamos fila para colocar el Logo a la izquierda y el botón a la derecha */
     .header-content { 
         flex-direction: row !important; 
         justify-content: space-between;
+        align-items: center;
         position: relative;
-        padding: 0 25px;
+        padding: 0 20px;
     }
 
-    /* Diseño del contenedor de las tres líneas del botón */
     .hamburger-btn {
         display: flex;
         flex-direction: column;
@@ -761,7 +760,6 @@ h2 {
         transition: transform 0.3s ease, opacity 0.3s ease;
     }
 
-    /* Menú desplegable oculto por defecto que cae debajo de la barra */
     nav {
         display: none;
         position: absolute;
@@ -778,23 +776,23 @@ h2 {
         flex-direction: column !important; 
         gap: 25px !important; 
         text-align: center; 
-        font-size: 1.1rem; /* Un pelín más grande para facilitar el clic táctil */
+        font-size: 1.1rem;
+        padding: 0;
+        margin: 0;
     }
 
     .contact-btn {
-            display: inline-block;
-            width: auto !important;     /* Eliminamos el porcentaje para que no se estruje */
-            padding: 12px 35px;         /* Le damos un espacio generoso y elegante a los lados */
-            box-sizing: border-box;
-            margin-top: 5px;            /* Separa un pelín el botón del enlace anterior */
-        }
+        display: inline-block;
+        width: auto !important;     
+        padding: 12px 35px;         
+        box-sizing: border-box;
+        margin-top: 5px;            
+    }
 
-    /* LÓGICA INTERACTIVA: Muestra el menú cuando el checkbox está activo */
     #menu-check:checked ~ nav {
         display: block;
     }
 
-    /* Animación fluida: Las tres líneas pasan a ser una "X" de cierre */
     #menu-check:checked ~ .hamburger-btn span:nth-child(1) {
         transform: translateY(8px) rotate(45deg);
     }
@@ -806,46 +804,271 @@ h2 {
     }
 
     /* ========================================================
-       2. SECCIÓN SECCIÓN HERO (ESTILOS ANTIGUOS)
+       2. SECCIÓN HERO (Centrado matemático sin desborde)
        ======================================================== */
+    .hero {
+        padding-top: 130px;   
+        padding-bottom: 20px; 
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+
+    .hero-content {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 100%;
+    }
+
     .hero h1 { 
-        font-size: 3.2rem; 
-        margin-bottom: 30px;
+        font-size: 2.4rem; /* Evita que palabras largas toquen los bordes del móvil */
+        margin-bottom: 25px;
+        padding: 0 10px;
+        box-sizing: border-box;
+        word-wrap: break-word;
     }
+
+    .hero-image-wrapper {
+        margin-bottom: 35px;
+        width: 100%;
+        display: flex;
+        justify-content: center;
+    }
+
     .hero-main-img { 
-        max-width: 300px; 
+        width: 100%;
+        max-width: 250px; 
+        height: auto;
     }
+
     .hero-btns { 
-        flex-direction: column; 
-        gap: 15px; 
+        display: flex !important;
+        flex-direction: column !important; 
+        align-items: center !important; 
+        gap: 15px !important; 
+        width: 100% !important;
+    }
+
+    .hero-btns .btn-outline {
+        width: 100% !important;
+        max-width: 280px; 
+        box-sizing: border-box;
+        text-align: center;
+        font-size: 1rem;
+        padding: 12px 20px;
+    }
+
+    /* ========================================================
+       3. ESTRUCTURAS GENERALES Y CONTENEDORES
+       ======================================================== */
+    h2 { 
+        font-size: 2.2rem; 
+        margin-bottom: 40px;
+        text-align: center;
+        padding: 0 15px;
+        box-sizing: border-box;
+    }
+
+    .container { 
+        padding: 60px 20px; /* Margen lateral óptimo para pantallas pequeñas */
+        box-sizing: border-box;
     }
 
 /* ========================================================
-       4. SECCIÓN PROYECTOS (ESTILOS MEDIANTE NUEVO HTML)
+       4. SECCIÓN PROYECTOS (Opción 1: Títulos sobre la foto)
        ======================================================== */
     .projects-grid { 
-        gap: 40px; /* Separación vertical idónea entre las tarjetas */
+        grid-template-columns: 1fr !important;
+        gap: 30px; 
+        width: 100%;
     }
 
     .project-item {
-        aspect-ratio: 16/10 !important; /* Mantenemos tu proporción móvil */
-        overflow: visible !important;   /* IMPORTANTE: Permite que el nuevo texto asome por debajo sin recortarse */
+        width: 100% !important;
+        max-width: 380px; 
+        margin: 0 auto !important; 
+        aspect-ratio: 16/9 !important; /* Recupera la proporción panorámica exacta de PC */
+        overflow: hidden !important;   /* Mantiene los bordes redondeados perfectos */
+        border-radius: 10px;
+        background-color: var(--dark-gray);
+        box-shadow: 0 8px 25px rgba(0,0,0,0.2);
     }
 
-    /* Ocultamos el overlay con hover en móvil para que no haga comportamientos extraños al pulsar */
+    .project-item .img-placeholder {
+        width: 100% !important;
+        height: 100% !important;
+        aspect-ratio: unset !important;
+    }
+
+    /* Forzamos a que el overlay oscuro y el texto premium de PC estén siempre visibles en móvil */
     .project-overlay {
+        display: flex !important;
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(17, 17, 17, 0.75) !important; /* Filtro oscuro elegante */
+        opacity: 1 !important; 
+        justify-content: center;
+        align-items: center;
+        z-index: 2;
+    }
+
+    .project-title {
+        color: var(--white) !important;
+        font-size: 1.4rem !important; /* Tamaño original de escritorio */
+        font-weight: 900 !important;   /* Ultra negrita original */
+        text-transform: uppercase !important;
+        letter-spacing: 1.5px !important;
+        text-align: center;
+        padding: 0 15px;
+        transform: translateY(0) !important; /* Elimina el desplazamiento del hover */
+    }
+
+    /* Ocultamos por completo el texto externo inferior */
+    .project-mobile-title {
         display: none !important;
     }
 
-    /* Estilo del título que ahora aparece limpio debajo de la foto */
-    .project-mobile-title {
+    /* ========================================================
+       5. SECCIÓN SERVICIOS (¡Solución clave al descuadre!)
+       ======================================================== */
+    .services-text-col {
+        padding: 40px 20px !important; /* Reduce los 30px laterales que asfixiaban el texto */
+        gap: 50px !important;
+    }
+
+    .service-display-header {
+        flex-wrap: wrap !important; /* Si el título y el número no caben juntos, bajan de línea en vez de romper la web */
+        align-items: center !important;
+        gap: 10px;
+    }
+
+    .service-display-title {
+        font-size: 1.5rem !important; /* Ajuste tipográfico fluido para móviles pequeños */
+    }
+
+    .service-display-text {
+        max-width: 100% !important;
+        font-size: 1rem;
+    }
+
+    .services-images-col {
+        padding: 0 20px 20px 20px !important;
+    }
+
+    /* ========================================================
+       6. SECCIÓN SABER MÁS Y BOTONES GRANDES (Ajuste de seguridad)
+       ======================================================== */
+    .philosophy-card {
+        padding: 25px 20px !important; /* Evita que las tarjetas de filosofía aprieten el contenido */
+    }
+
+    .btn-orange {
         display: block !important;
+        width: 100% !important;
+        max-width: 280px !important; /* Transforma el botón gigante en uno estilizado como los del Hero */
+        margin: 0 auto !important;
+        padding: 15px 20px !important;
+        font-size: 1rem !important;
         text-align: center;
-        font-size: 1.2rem;
-        font-weight: 700;
-        margin-top: 12px;
-        text-transform: uppercase;
-        letter-spacing: 1px;
-        color: var(--white);
+        box-sizing: border-box;
+    }
+
+    /* ========================================================
+       7. SECCIÓN GALERÍA MASONRY (Fuerza 1 columna en móvil)
+       ======================================================== */
+    .gallery-grid { 
+        column-count: 1 !important; /* Evita que las fotos se dividan en 2 columnas diminutas por debajo de 460px */
+        column-gap: 0px; 
+    }
+}
+/* ========================================================
+   PANTALLAS MUY PEQUEÑAS (< 400px) — iPhone SE, Galaxy A, etc.
+   ======================================================== */
+@media (max-width: 400px) {
+
+    /* Hero: título principal con padding para no tocar bordes */
+    .hero-main-title {
+        font-size: 2.6rem !important;
+        padding: 0 15px !important;
+        box-sizing: border-box !important;
+        word-break: break-word;
+    }
+
+    .hero-seo-title {
+        font-size: 0.85rem !important;
+        padding: 0 15px !important;
+    }
+
+    /* Imagen del hero más pequeña */
+    .hero-main-img {
+        max-width: 200px !important;
+    }
+
+    /* Botones del hero al 100% del ancho pero con margen */
+    .hero-btns .btn-outline {
+        max-width: 240px !important;
+        font-size: 0.9rem !important;
+        padding: 10px 15px !important;
+    }
+
+    /* Títulos h2 más compactos */
+    h2 {
+        font-size: 1.8rem !important;
+        padding: 0 15px !important;
+    }
+
+    /* Contenedor: margen lateral mínimo para que no apriete */
+    .container {
+        padding: 50px 15px !important;
+    }
+
+    /* Proyectos: quitar el max-width fijo para que se adapten al 100% */
+    .project-item {
+        max-width: 100% !important;
+        overflow: visible !important;
+        aspect-ratio: unset !important;
+    }
+
+    .project-item .img-placeholder {
+        aspect-ratio: 16/10;
+        overflow: hidden;
+        border-radius: 10px;
+        height: auto !important;
+    }
+
+    /* Servicios: reducir padding lateral agresivo */
+    .services-text-col {
+        padding: 30px 15px !important;
+        gap: 40px !important;
+    }
+
+    .service-display-title {
+        font-size: 1.3rem !important;
+    }
+
+    .service-display-text {
+        font-size: 0.95rem !important;
+    }
+
+    .service-contact-btn {
+        padding: 10px 20px !important;
+        font-size: 0.85rem !important;
+        align-self: center !important;
+        text-align: center;
+    }
+
+    /* Header: logo y hamburguesa con menos padding */
+    .header-content {
+        padding: 0 15px !important;
+    }
+
+    /* Footer */
+    .main-footer {
+        padding: 40px 15px 30px !important;
     }
 }
