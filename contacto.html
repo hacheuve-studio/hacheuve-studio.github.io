@@ -196,7 +196,48 @@
 
     <div id="footer-placeholder"></div>
 
-    <script>
+<script>
+        // ==========================================
+        // DETECTAR SERVICIO SELECCIONADO DESDE INDEX (CON DEBUG)
+        // ==========================================
+        document.addEventListener("DOMContentLoaded", () => {
+            console.log(" %c[DEBUG] Iniciando detección de servicio...", "color: #ff9c2a; font-weight: bold;");
+            
+            // 1. Ver qué URL exacta está leyendo el navegador
+            console.log("[DEBUG] URL completa actual:", window.location.href);
+            console.log("[DEBUG] Parámetros crudos (search):", window.location.search);
+
+            const urlParams = new URLSearchParams(window.location.search);
+            const servicioSeleccionado = urlParams.get('servicio');
+            console.log("[DEBUG] Valor extraído de '?servicio=':", servicioSeleccionado);
+
+            // 2. Buscar el elemento select en el HTML
+            const selectElement = document.getElementById("servicio");
+            
+            if (selectElement) {
+                console.log("[DEBUG] Elemento <select id='servicio'> ENCONTRADO en el HTML.");
+                console.log("[DEBUG] Valor por defecto antes de cambiarlo:", selectElement.value);
+                
+                if (servicioSeleccionado) {
+                    // Listar opciones disponibles para ver si coincide textualmente
+                    const opcionesDisponibles = Array.from(selectElement.options).map(opt => opt.value);
+                    console.log("[DEBUG] Valores válidos dentro de tu menú desplegable:", opcionesDisponibles);
+
+                    if (opcionesDisponibles.includes(servicioSeleccionado)) {
+                        selectElement.value = servicioSeleccionado;
+                        console.log("%c[DEBUG] ¡ÉXITO! El valor ha sido cambiado a: " + selectElement.value, "color: #00ff66; font-weight: bold;");
+                    } else {
+                        console.warn(`[DEBUG] ALERTA: El valor '${servicioSeleccionado}' de la URL no coincide exactamente con ninguna opción de tu HTML.`);
+                    }
+                } else {
+                    console.log("[DEBUG] No se ha detectado el parámetro '?servicio=' en la URL (Carga limpia de contacto).");
+                }
+            } else {
+                console.error("[DEBUG] ERROR CRÍTICO: No se encontró ningún elemento con id='servicio' en esta página.");
+            }
+            console.log(" %c[DEBUG] Fin de la comprobación.", "color: #ff9c2a; font-weight: bold;");
+        });
+
         // ==========================================
         // CONTROL EN SEGUNDO PLANO DEL FORMULARIO
         // ==========================================
@@ -205,7 +246,7 @@
         const button = document.getElementById("submit-button");
 
         async function handleSubmit(event) {
-            event.preventDefault(); // Evita que la página se recargue o se vaya a Formspree
+            event.preventDefault(); 
             
             button.disabled = true;
             button.innerText = "Enviando...";
@@ -217,37 +258,31 @@
                     method: form.method,
                     body: data,
                     headers: {
-                        'Accept': 'application/json' // Le dice a Formspree que responda en JSON y no redirija
+                        'Accept': 'application/json' 
                     }
                 });
                 
                 if (response.ok) {
-                    // ÉXITO: Mostramos mensaje verde, limpiamos formulario y restauramos botón
                     status.style.display = "block";
-                    status.style.color = "#00ff66"; // Verde neón moderno
+                    status.style.color = "#00ff66"; 
                     status.innerText = "¡MENSAJE ENVIADO! ME PONDRÉ EN CONTACTO CONTIGO PRONTO.";
-                    form.reset(); // El truco que borra todo lo escrito
+                    form.reset(); 
                 } else {
-                    // ERROR DE RESPUESTA
                     status.style.display = "block";
                     status.style.color = "#ff3333";
                     status.innerText = "Oops, hubo un problema. Por favor, inténtalo de nuevo.";
                 }
             } catch (error) {
-                // ERROR DE CONEXIÓN
                 status.style.display = "block";
                 status.style.color = "#ff3333";
                 status.innerText = "Error de conexión. Revisa tu red.";
             } finally {
-                // Devolvemos el botón a su estado original pase lo que pase
                 button.disabled = false;
                 button.innerText = "Enviar Mensaje";
             }
         }
         
-        // Escuchar el momento en el que el usuario pulsa el botón enviar
         form.addEventListener("submit", handleSubmit);
-
 
         // ==========================================
         // CARGA MODULAR DE HEADER Y FOOTER
