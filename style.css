@@ -1062,6 +1062,113 @@ h2 {
         text-align: center;
     }
 
+} /* Cierre de @media (max-width: 768px) abierto en la línea 726 */
+
+/* ==========================================
+   SECCIÓN CLIENTES (ALINEACIÓN HORIZONTAL)
+   ========================================== */
+.clients-section {
+    padding: 80px 0;
+    width: 100%;
+}
+
+.clients-contact-btn-wrapper {
+    display: flex;
+    justify-content: center;
+    margin-top: 50px;
+}
+
+.btn-clients-contact {
+    font-size: 1.4rem !important;
+    padding: 22px 60px !important;
+    border-radius: 6px !important;
+}
+
+.clients-grid {
+    display: grid !important;
+    grid-template-columns: repeat(4, 1fr) !important; /* 4 en línea para pantalla grande */
+    gap: 30px !important;
+    align-items: start !important;
+    width: 100% !important;
+    margin-top: 40px;
+}
+
+.client-item {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    text-align: center !important;
+    width: 100% !important;
+    box-sizing: border-box;
+    text-decoration: none !important;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+}
+
+.client-item:hover {
+    transform: scale(1.08);
+}
+
+/* Control estricto para que los logos no se desborden */
+.client-logo-wrapper {
+        width: 100% !important;
+        height: 170px !important; /* Altura máxima del contenedor del logo */
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        margin-bottom: 20px !important;
+    }
+
+    .client-logo-wrapper img {
+        max-width: 100% !important;
+        max-height: 150px !important; /* Altura máxima de la imagen */
+        width: auto !important;
+        height: auto !important;
+        object-fit: contain !important;
+    }
+
+    /* Textos adaptados */
+    .client-title {
+        color: var(--white, #fff);
+        font-size: 1.5rem !important;
+        font-weight: 700;
+        margin-bottom: 8px;
+        text-transform: uppercase;
+    }
+
+    .client-subtitle {
+        color: var(--white, #fff);
+        opacity: 0.8;
+        font-size: 1.15rem !important;
+        margin: 0;
+    }
+
+    /* Adaptación para pantallas pequeñas (2 en línea) */
+    @media (max-width: 768px) {
+        .clients-grid {
+            grid-template-columns: repeat(2, 1fr) !important;
+            gap: 30px 20px !important;
+        }
+        
+        .client-logo-wrapper {
+            height: 120px !important;
+        }
+        
+        .client-logo-wrapper img {
+            max-height: 105px !important;
+        }
+
+        .client-title {
+            font-size: 1.2rem !important;
+        }
+
+        .client-subtitle {
+            font-size: 1rem !important;
+        }
+    }
+
+/* Ajustes exclusivos para móvil (header y footer) */
+@media (max-width: 768px) {
     /* Header: logo y hamburguesa con menos padding */
     .header-content {
         padding: 0 15px !important;
